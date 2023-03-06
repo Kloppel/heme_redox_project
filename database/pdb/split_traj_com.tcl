@@ -17,7 +17,7 @@ foreach f $allexes {
         set number 0
         for {set j 0} {$j<=3 && $number==0} {incr j} {
             set heme [lindex $listName  $j]
-            set all [atomselect top "(resname $heme)" frame $i]
+            set all [atomselect top "(resname $heme and chain A)" frame $i]
             set number  [$all num ]
             echo $heme $number
             echo j $j

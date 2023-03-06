@@ -125,6 +125,7 @@ class porphyr:
         for i1 in range(self.mol.size):
             n = list(self.mol.graph.neighbors[i1])
             if self.mol.numbers[i1] == 26:
+                print(f"Eisen {i1}")
                 nofn = []
                 NDict = {}
                 for N in n:
@@ -222,6 +223,7 @@ class porphyr:
         C14a = [i for i in list(self.mol.graph.neighbors[C34a]) if i in C1]  [0]
         N4 = [i for i in list(self.mol.graph.neighbors[C14a]) if i in N]  [0]
         Fe = [i for i in self.calldict.keys() if self.calldict[i] == "Fe"][0]
+        print(f"Fe {Fe}")
         if not all([     all(  i in C1 for i in [C11a,C11b,C12b,C12a]),          all(  i in C2 for i in [C1C2,C4C1]),          all(  i in C3 for i in [C31a,C31b,C32a,C32b]),          all(  i in N for i in [N1,N2])  ]):
             raise ValueError('Fehler bei der Zuweisung.')
         methyldict={}
@@ -395,39 +397,39 @@ class dihedpdb:
         knownsaddling = list(self.df_saddling.index)
         knownruffling = list(self.df_ruffling.index)
         for k in glob.glob("database/pdb/prepared/*.pdb"):
-            if not (k[-8:-4] in knowndihed) or not (k[-8:-4] in knownsaddling) or not (k[-8:-4] in knownruffling):
-                print(k[-8:-4]," new")
+            if not (k[k.find("/prepared/")+10:-4] in knowndihed) or not (k[k.find("/prepared/")+10:-4] in knownsaddling) or not (k[k.find("/prepared/")+10:-4] in knownruffling):
+                print(k[k.find("/prepared/")+10:-4]," new")
                 try:
                     a = porphyr(k)
-                    if not (k[-8:-4] in knowndihed):
+                    if not (k[k.find("/prepared/")+10:-4] in knowndihed):
                         try:
                             dihed = a.get_dihed()
-                            self.df = self.df.append(pd.DataFrame( [[i[2] for i in dihed]], index = [k[-8:-4]],columns =a.compassordername())) #)   )
+                            self.df = self.df.append(pd.DataFrame( [[i[2] for i in dihed]], index = [k[k.find("/prepared/")+10:-4]],columns =a.compassordername())) #)   )
                             nr.append([i[3] for i in dihed]) ##überprügen wahrschl müpll
                         except:
                             print(f"problems with {k} dihed" )
                             
 
-                    if not (k[-8:-4] in knownsaddling):
+                    if not (k[k.find("/prepared/")+10:-4] in knownsaddling):
                         try:
                             saddling = a.get_dihed_saddling()
                            # print([[i[2] for i in dihed]])
-                            #print([k[-8:-4]])
+                            #print([k[k.find("/prepared/")+10:-4]])
                             #print(a.get_saddling_compass())
                             #print(dihed,"saddling")
-                            #print(pd.DataFrame( [[i[2] for i in dihed]], index = [k[-8:-4]],columns =a.get_saddling_compass()).to_string())
-                            print(pd.DataFrame( [[i[2] for i in saddling]], index = [k[-8:-4]],columns =a.get_saddling_compass()))
-                            self.df_saddling = self.df_saddling.append(pd.DataFrame( [[i[2] for i in saddling]], index = [k[-8:-4]],columns =a.get_saddling_compass()))
+                            #print(pd.DataFrame( [[i[2] for i in dihed]], index = [k[k.find("/prepared/")+10:-4]],columns =a.get_saddling_compass()).to_string())
+                            print(pd.DataFrame( [[i[2] for i in saddling]], index = [k[k.find("/prepared/")+10:-4]],columns =a.get_saddling_compass()))
+                            self.df_saddling = self.df_saddling.append(pd.DataFrame( [[i[2] for i in saddling]], index = [k[k.find("/prepared/")+10:-4]],columns =a.get_saddling_compass()))
                         except:
                             print(f"problems with {k} saddling" )
 
-                    if not (k[-8:-4] in knownruffling):
+                    if not (k[k.find("/prepared/")+10:-4] in knownruffling):
                         try:
                             dihed = a.get_dihed_ruffling()
                          #   print(dihed,"ruffling")
-                            self.df_ruffling = self.df_ruffling.append(pd.DataFrame( [[i[2] for i in dihed]], index = [k[-8:-4]],columns =a.get_ruffling_compass()))
+                            self.df_ruffling = self.df_ruffling.append(pd.DataFrame( [[i[2] for i in dihed]], index = [k[k.find("/prepared/")+10:-4]],columns =a.get_ruffling_compass()))
 
-                     #       self.df_ruffling = self.df.append(pd.DataFrame( [[i[2] for i in dihed]], index = [k[-8:-4]],columns =a.ruffling_compass))                         #)   )
+                     #       self.df_ruffling = self.df.append(pd.DataFrame( [[i[2] for i in dihed]], index = [k[k.find("/prepared/")+10:-4]],columns =a.ruffling_compass))                         #)   )
                         except:
                             print(f"problems with {k} ruffling" )
                 except:
