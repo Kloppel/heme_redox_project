@@ -22,3 +22,11 @@ wts.Hemetype(l)
 
 #for k in glob.glob("database/pdb/prepared/*.pdb"):
 #    print()
+
+if(True):
+    wts.TCL-Skript()
+    wts.dihedpdb()        
+    wts.prepare_gaussian_logs().core()
+    wts.onecsv()
+
+    wts.read_redpot_lit()
