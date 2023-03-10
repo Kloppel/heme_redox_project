@@ -1,0 +1,72 @@
+'3CCX' 1
+ '1EWH' 1
+ '1YCC' ?
+ '6U97' 1 
+ '1CCE'1
+ '1DRM' 1
+ '1F1F' 1 
+ '4K8F' A 
+ '1H9X' A + Liganden
+
+       '2OYY' ?
+        '451C' 1
+        '1MZ4' 1
+        '1CO6' 1 
+        '1A6K' 1 
+        '1CYO' 1 
+        '1AW3' 1
+        '1LS9' 1 
+        '2V08' ?
+
+       '1EHB' 1 
+        '351C' 1 
+        '1JP9' 1
+        '1B5A' 1
+        '5MCS' 1
+        '1CCC' 1
+        '1C2R' 1
+        '1A6M' 1
+        '1CXC' 1
+
+       '2PCB' Liganden
+        '1CCK' 1
+        '1CTJ' 1
+        '1JBQ' A
+        '1HRC' 1
+        '2BGV' 1
+        '1QPU' 1
+        '1MOH' 1
+        '1GU2' 1
+
+       '1F1C' A
+        '1JP6' 1
+        '1YNR' A
+        '1CRC' 1
+        '1CNO' A
+        '1GIW' 1
+        '4MU8' 1
+        '1FJ0' 1
+        '1A6G' 1
+
+       '2HPD' 1
+        '1EUE' 1
+        '1JDL' 1
+        '1CMT' 1
+        '1EBT' 1
+        '1HJT' 1
+        '1CCG' 1
+        '2GSM' Liganden
+        '1VB6' A_Ligande
+
+       '1CRY' 1
+        '1DJ1' 1
+        '3CU4' 1
+        '1FLP' 1
+        '1CYI' 1
+        '1IO3' 1
+        '1ES1' 1
+        '1CYJ' 1
+        '1C75' 1
+
+       '1FHF' 1
+        '1CMQ' 1

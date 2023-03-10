@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <title>Praesident</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<script>
+
+
+function change(){
+        document.getElementById("eins").style.zIndex= -1; 
+        document.getElementById("zwei").style.zIndex= 1; 
+
+
+    }    
+    function change1(){
+        document.getElementById("eins").style.zIndex= 1; 
+        document.getElementById("zwei").style.zIndex= -1; 
+
+
+    }
+
+    function changeid(i1,i2){
+        document.getElementById(i1).style.zIndex = -1
+        document.getElementById(i2).style.zIndex = 1
+        
+    }
+
+</script>
+<style>
+    body{
+        background-color: black;
+
+    }
+    #eins{
+        z-index: -1;
+    }
+    #zwei{
+        z-index: 1;
+    }
+
+    .box{
+        height: 100%;
+        margin-top: 200px;
+        margin-bottom: 200px;
+        display: grid;
+    }
+
+    .item{
+
+        grid-column-start: 2;
+        grid-column-end: 2;
+        grid-row-start: 1;
+        grid-row-end: 3;     
+
+    }
+    .item:mouseover{
+        z-index: -1;
+    }
+</style>
+
+<body>
+    <div class = "box">
+
+        <div class="item " >
+            <img src="plots/saddling1.png" alt="Chicago" >
+        </div>  
+
+
+    </div>
+    <div class = "box">
+
+        <div class="item " >
+            <img src="plots/saddling2.png" alt="Chicago" >
+        </div>  
+
+
+    </div>
+    <div class = "box" > 
+
+        <div class="item eins"  id = "eins" onclick="change()">
+            <img src="plots/falsche_Hoffnung2.png" alt="Chicago" >
+        </div>    
+
+
+        <div class="item zwei" id = "zwei"  onclick="change1()">
+            <img src="plots/falsche_Hoffnung.png" alt="Chicago">
+        </div>
+
+    </div>
+
+    <div class = "box">
+
+        <div class="item " >
+            <img src="plots/order_smal.png" alt="Chicago" >
+        </div>  
+    </div>   
+
+    <div class = "box">
+        <div class="item o2 " id = "o1">
+            <img src="plots/order_smal.png" alt="Chicago" onclick = 'changeid("o1","o2")' >
+        </div>  
+        <div class="item o1" id ="o2" >
+            <img src="plots/order_media.png" alt="Chicago" onclick = 'changeid("o2","o1")'>
+        </div>  
+    </div>   
+    <div class = "box">
+
+
+
+        <div class="item o2 " id = "oo1">
+            <img src="plots/order_smal.png" alt="Chicago" onclick = 'changeid("oo1","oo2")' >
+        </div>  
+        <div class="item o1" id ="oo2" >
+            <img src="plots/order_media.png" alt="Chicago" onclick = 'changeid("oo2","oo3")'>
+        </div>  
+        <div class="item"  id = oo3>
+            <img src="plots/order_large.png" alt="Chicago"onclick = 'changeid("oo3","oo1")' >
+        </div>  
+
+
+
+    </div>   
+    <div class = "box">
+
+        <div class="item " >
+            <img src="plots/gaussrm.png" alt="Chicago" >
+        </div>  
+    </div>       
+
+    <div class = "box">
+
+        <div class="item " >
+            <img src="plots/compareHemeB.png" alt="Chicago" >
+        </div>  
+
+    </div>
+    
+    
+    <div class = "box">
+
+        <div class="item " >
+            <img src="plots/Saddling_and_ruffling.png" alt="Chicago" >
+        </div>  
+
+    </div>
+
+
+    <div class = "box">
+
+        <div class="item s1" id = "s1">
+            <img src="plots/distortion_emlit_adding_saddling-1_ruffling5.png" alt="Chicago" onclick = 'changeid("s1","s2")'>
+        </div>  
+        <div class="item s2" id = "s2">
+            <img src="plots/distortion_emlit_adding_saddling5_ruffling5.png" alt="Chicago"onclick = 'changeid("s2","s3")' >
+        </div>  
+        <div class="item s5" id = "s5">
+            <img src="plots/distortion_emlit_adding_saddling1_ruffling5.png" alt="Chicago" onclick = 'changeid("s5","s1")' >
+        </div> 
+        <div class="item s3" id = "s3">
+            <img src="plots/distortion_emlit_adding_saddling5_ruffling1.png" alt="Chicago" onclick = 'changeid("s3","s4")'>
+        </div>            
+        <div class="item s4" id = "s4">
+            <img src="plots/distortion_emlit_adding_saddling0_ruffling5.png" alt="Chicago" onclick = 'changeid("s4","s1")'>
+        </div>                  
+
+    </div>
+    
+    
+    <div class = "box">
+
+        <div class="item " >
+            <img src="plots/ruffling_50_and_saddling_*_10_gerundet50.png" alt="Chicago" >
+        </div>  
+
+    </div>
+    <div class = "box">
+
+        <div class="item " >
+            <img src="plots/ruffling_50_and_saddling_*_-10_gerundet100_2.png" alt="Chicago" >
+        </div>  
+
+    </div>    
+
+
+
+</body>  
+
