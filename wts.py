@@ -125,7 +125,6 @@ class porphyr:
         for i1 in range(self.mol.size):
             n = list(self.mol.graph.neighbors[i1])
             if self.mol.numbers[i1] == 26:
-                print(f"Eisen {i1}")
                 nofn = []
                 NDict = {}
                 for N in n:
@@ -136,6 +135,7 @@ class porphyr:
                             C1.remove(nn)
                         except:
                             2
+
                     for c1 in C1:
                         C2 = list(self.mol.graph.neighbors[c1])
                         C1Dict.update({c1:C2})
@@ -168,6 +168,7 @@ class porphyr:
                 for i2 in n[:index]:
                     angles.append((i0, i1, i2))
         self.graph  = self.mol.graph.get_subgraph(self.por_index)
+
         N = []
         C1 = []
         C2 = []
@@ -223,7 +224,6 @@ class porphyr:
         C14a = [i for i in list(self.mol.graph.neighbors[C34a]) if i in C1]  [0]
         N4 = [i for i in list(self.mol.graph.neighbors[C14a]) if i in N]  [0]
         Fe = [i for i in self.calldict.keys() if self.calldict[i] == "Fe"][0]
-        print(f"Fe {Fe}")
         if not all([     all(  i in C1 for i in [C11a,C11b,C12b,C12a]),          all(  i in C2 for i in [C1C2,C4C1]),          all(  i in C3 for i in [C31a,C31b,C32a,C32b]),          all(  i in N for i in [N1,N2])  ]):
             raise ValueError('Fehler bei der Zuweisung.')
         methyldict={}
@@ -268,8 +268,16 @@ class porphyr:
         NC2O, C1_ON, C3_ON, N_O, C3_OS, C1_OS = OG
         OC2S, C1_SO, C3_SO, N_S, C3_SW, C1_SW = SG
         SC2W, C1_WS, C3_WS, N_W, C3_WN, C1_WN = WG
-        
+        print("\n")
+
+        for n in[ N_N,N_O,N_S,N_W]:
+            print(n, list(self.mol.graph.neighbors[n]))
+  #      print(WC2N, C1_NW, C3_NW, N_N, C3_NO, C1_NO)
+   #     print(NC2O, C1_ON, C3_ON, N_O, C3_OS, C1_OS)
+    #    print(OC2S, C1_SO, C3_SO, N_S, C3_SW, C1_SW)
+     #   print(SC2W, C1_WS, C3_WS, N_W, C3_WN, C1_WN)        
         if not (C1_OS in list(self.mol.graph.neighbors[OC2S]) and C1_SO in list(self.mol.graph.neighbors[OC2S])):
+            print("Change")
             NC2O, C1_NO, C3_NO, N_N, C3_NW, C1_NW = NG
             WC2N, C1_WN, C3_WN, N_W, C3_WS, C1_WS = OG
             SC2W, C1_SW, C3_SW, N_S, C3_SO, C1_SO = SG
@@ -280,15 +288,40 @@ class porphyr:
             OC2S, C1_SO, C3_SO, N_S, C3_SW, C1_SW = SG
             NC2O, C1_ON, C3_ON, N_O, C3_OS, C1_OS = WG
 
+            for n in[ N_N,N_O,N_S,N_W]:
+                print(n, list(self.mol.graph.neighbors[n]))
+        else:
+            print("no Change")            
+
+       # print(WC2N, C1_NW, C3_NW, N_N, C3_NO, C1_NO)
+       # print(NC2O, C1_ON, C3_ON, N_O, C3_OS, C1_OS)
+       # print(OC2S, C1_SO, C3_SO, N_S, C3_SW, C1_SW)
+       # print(SC2W, C1_WS, C3_WS, N_W, C3_WN, C1_WN)
+        
         self.Fe, self.NC2O, self.C1_NO, self.C3_NO, self.N_N, self.C3_NW, self.C1_NW , self.WC2N, self.C1_WN, self.C3_WN, self.N_W, self.C3_WS, self.C1_WS, self.SC2W, self.C1_SW, self.C3_SW, self.N_S, self.C3_SO, self.C1_SO , self.OC2S, self.C1_OS, self.C3_OS, self.N_O, self.C3_ON, self.C1_ON  =Fe, NC2O, C1_NO, C3_NO, N_N, C3_NW, C1_NW ,WC2N, C1_WN, C3_WN, N_W, C3_WS, C1_WS, SC2W, C1_SW, C3_SW, N_S, C3_SO, C1_SO , OC2S, C1_OS, C3_OS, N_O, C3_ON, C1_ON
 
         self.importantdihed = [Fe, NC2O, OC2S, SC2W, WC2N]
         self.order  = [Fe] + NG + OG + SG + WG
         self.order  = [Fe] + [ NC2O, C1_NO, C3_NO, N_N, C3_NW, C1_NW ] + [WC2N, C1_WN, C3_WN, N_W, C3_WS, C1_WS] + [SC2W, C1_SW, C3_SW, N_S, C3_SO, C1_SO ] + [OC2S, C1_OS, C3_OS, N_O, C3_ON, C1_ON] 
-        self.saddling = [[C1_SW, N_S ,N_N,C1_NW],[C1_SO, N_S,N_N, C1_NO],[C1_WS, NW, NO ,C1_OS],[C1_WN, NW, NO ,C1_ON]]
+        self.saddling = [[C1_SW, N_S ,N_N,C1_NW],[C1_SO, N_S,N_N, C1_NO],[C1_WS, N_W, N_O ,C1_OS],[C1_WN, N_W, N_O ,C1_ON]]
+        #self.saddling = [[C1_SW, N_S ,N_N,C1_NW],[C1_SO, N_S,N_N, C1_NO],[C1_WS, NO, NW ,C1_OS],[C1_WN, NO, NW ,C1_ON]]
         self.ruffling = [[C3_SW, C1_SW, C1_WS, C3_WS],[C3_SO, C1_SO, C1_OS, C3_OS],[C3_WN, C1_WN, C1_NW, C3_NW],[C3_NO, C1_NO, C1_ON, C3_ON]]
-        
+        print(self.saddling)
+        print(f"NN, {N_N}, NO {N_O}, NS {N_S}, NW {N_W}, ")
+        print(f"NN, {self.N_N}, NO {self.N_O}, NS {self.N_S}, NW {self.N_W}, ")
+
+  #      print([WC2N, C1_NW, C3_NW, N_N, C3_NO, C1_NO] )
+   #     print([SC2W, C1_WS, C3_WS, N_W, C3_WN, C1_WN] )
+    ##    print([OC2S, C1_SO, C3_SO, N_S, C3_SW, C1_SW] )
+      #  print([NC2O, C1_ON, C3_ON, N_O, C3_OS, C1_OS] )
+
+     #   print("NO",N_O, list(self.mol.graph.neighbors[N_O]))
+    #    print("NW",N_W, list(self.mol.graph.neighbors[N_W]))
+
         self.compassdict = { Fe:"Fe",   NC2O:"NC2O", C1_NO:"C1_NO",C3_NO:"C3_NO", N_N:"N_N", C3_NW:"C3_NW", C1_NW:"C1_NW",             OC2S:"OC2S", C1_OS:"C1_OS", C3_OS:"C3_OS", N_O:"N_O", C3_ON:"C3_ON", C1_ON:"C1_ON",             SC2W:"SC2W", C1_SW:"C1_SW", C3_SW:"C3_SW", N_S:"N_S", C3_SO:"C3_SO", C1_SO:"C1_SO",            WC2N:"WC2N", C1_WN:"C1_WN", C3_WN:"C3_WN", N_W:"N_W", C3_WS:"C3_WS", C1_WS:"C1_WS" }
+
+       # print(self.compassdict)
+
 
     def get_dihed_per_list(self,givenlist):
         dihedral = []
@@ -314,6 +347,9 @@ class porphyr:
     def get_dihed_ruffling(self):
         return self.get_dihed_per_list(self.ruffling)
     def get_dihed_saddling(self):
+        print("saddling")
+        for i in self.saddling:
+            print(self.get_compassname(i), i)        
         return self.get_dihed_per_list(self.saddling)
 
     def __init__(self, name):
@@ -344,8 +380,9 @@ class porphyr:
         self.mol = Molecule.from_file2(name)
         self.mol.set_default_graph()
         self.set_porphyr()
-
-
+        self.porphycompassnumber()
+        
+        self.porphyrcompassname()
 
 class dihedpdb:
     namelist =   ["Fe", "NC2O", "C1_NO ", "C3_NO ", "N_N ", "C3_NW", "C1_NW ", "OC2S", "C1_OS", "C3_OS", "N_O", "C3_ON", "C1_ON ", "SC2W", "C1_SW", "C3_SW", "N_S", "C3_SO", "C1_SO ", "WC2N", "C1_WN", "C3_WN", "N_W", "C3_WS", "C1_WS "]
